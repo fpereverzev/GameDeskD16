@@ -6,10 +6,21 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.shortcuts import render
 from .models import Ad, Reply
 from .forms import AdForm, ReplyForm
 
 User = get_user_model()
+
+def profile(request):
+    ads = Ad.objects.filter(author=request.user)
+    replies = Reply.objects.filter(author=request.user)
+
+    return render(request, 'accounts/profile.html', {
+        'user': request.user,
+        'ads': ads,
+        'replies': replies,
+    })
 
 # Представление для регистрации пользователей
 def register(request):

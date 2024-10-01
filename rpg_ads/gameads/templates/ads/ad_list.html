@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Все объявления</h1>
+  <a href="{% url 'ad_create' %}">Создать новое объявление</a>
+  <ul>
+    {% for ad in ads %}
+      <li>
+        <a href="{% url 'ad_detail' ad.pk %}">{{ ad.title }}</a> ({{ ad.get_category_display }})
+        <p>Автор: {{ ad.author.username }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Мои объявления и отклики на них</h1>
+  <ul>
+    {% for ad in ads %}
+      <li>
+        <h2>{{ ad.title }}</h2>
+        <ul>
+          {% for reply in ad.replies.all %}
+            <li>
+              {{ reply.author.username }}: {{ reply.content }}
+              {% if not reply.accepted %}
+                <a href="{% url 'accept_reply' reply.pk %}">Принять</a>
+              {% endif %}
+            </li>
+          {% empty %}
+            <p>Нет откликов на это объявление.</p>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

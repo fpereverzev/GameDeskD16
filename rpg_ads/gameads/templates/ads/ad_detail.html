@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ ad.title }}</h1>
+  <p><strong>Категория:</strong> {{ ad.get_category_display }}</p>
+  <p>{{ ad.content|safe }}</p>
+  <p><strong>Автор:</strong> {{ ad.author.username }}</p>
+
+  <h2>Отклики</h2>
+  <ul>
+    {% for reply in replies %}
+      <li>{{ reply.author.username }}: {{ reply.content }}</li>
+    {% empty %}
+      <p>Нет откликов.</p>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+    <h3>Оставить отклик</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Отправить</button>
+    </form>
+  {% else %}
+    <p>Пожалуйста, <a href="{% url 'account_login' %}">войдите в систему</a>, чтобы оставить отклик.</p>
+  {% endif %}
+{% endblock %}

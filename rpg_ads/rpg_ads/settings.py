@@ -126,12 +126,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Настройки почты
+# LOGIN_REDIRECT_URL = '/'
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'fpwstudent@gmail.com'
-EMAIL_HOST_PASSWORD = 'dbzx ruxl mnyl xjf'  # Убедитесь, что вы используете корректный пароль
+EMAIL_HOST_USER = 'fpwstudent'
+EMAIL_HOST_PASSWORD = 'ogdr uatv muqy ppyb'
 DEFAULT_FROM_EMAIL = 'fpwstudent@gmail.com'
 
